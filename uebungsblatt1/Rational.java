@@ -55,11 +55,20 @@ public class Rational {
 	private void reduce() {
 		assert (denominator != 0);
 		GGT ggt = new GGT();
-		int divider = abs(numerator) > abs(denominator) ? ggt.ggT(abs(numerator), abs(denominator))
-				: ggt.ggT(abs(denominator), abs(numerator));
+		int absNumerator = abs(numerator);
+		int absDenominator = abs(denominator);
+		int divider = ggt.ggT(max(absNumerator, absDenominator), min(absNumerator, absDenominator));
 		numerator /= divider;
 		denominator /= divider;
 		assert (denominator != 0);
+	}
+
+	private int max(int number1, int number2) {
+		return number1 > number2 ? number1 : number2;
+	}
+
+	private int min(int number1, int number2) {
+		return number1 < number2 ? number1 : number2;
 	}
 
 	private int abs(int number) {
